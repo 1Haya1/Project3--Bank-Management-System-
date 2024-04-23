@@ -41,7 +41,6 @@ public class Account {
 
 
     @ManyToOne
-    @JoinColumn(name = "customer_id",referencedColumnName = "id")
     @JsonIgnore
     private Customer customer;
 
