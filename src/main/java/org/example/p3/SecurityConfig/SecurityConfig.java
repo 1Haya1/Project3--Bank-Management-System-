@@ -42,13 +42,14 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/auth/get").hasAuthority("CUSTOMER")
                 .requestMatchers("/api/v1/auth/get").hasAuthority("EMPLOYEE")
                 .requestMatchers("/api/v1/auth/update_user").hasAuthority("CUSTOMER")
-                .requestMatchers("/api/v1/auth/update_user").hasAuthority("EMPLOYEE")                .anyRequest().authenticated() // الباقي للمسجلين دخول
+                .requestMatchers("/api/v1/auth/update_user").hasAuthority("EMPLOYEE")            
                 .requestMatchers("/api/v1/customer/add").hasAuthority("CUSTOMER")
                 .requestMatchers("/api/v1/account/account" , "/api/v1/account/details").hasAuthority("CUSTOMER")
                 .requestMatchers("/api/v1/account/deposit/{accountId}/{amount}" , "/api/v1/account/withdraw/{accountId}/{amount}"
                         , "/api/v1/account/transfer/{userAccountId}/{anotherUserId}/{amount}").hasAuthority("CUSTOMER")
                 .requestMatchers("/api/v1/employee/active" , "/api/v1/employee/block/{accountId}").hasAuthority("EMPLOYEE")
                 .requestMatchers("/api/v1/employee/list-users").hasAuthority("ADMIN")
+                .anyRequest().authenticated()
                 .and()
                 .logout().logoutUrl("/api/v1/auth/logout").permitAll()
                 .deleteCookies("JSESSIONID")
